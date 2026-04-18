@@ -1,8 +1,9 @@
 
 
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { validateEmail, validateName } from '../utils/validations';
 
 type User = {
     id: number;
@@ -47,6 +48,15 @@ export class UsersService {
     }
 
     create(createUserDto: CreateUserDto): User {
+
+        if( !validateEmail(createUserDto.email) ) {
+            throw new BadRequestException('El formato del correo electrónico no es válido');
+        }
+
+        if( !validateName(createUserDto.name) ) {
+            throw new BadRequestException('El formato del nombre no es válido');
+        }
+
         const newUser: User = {
             id: this.users.length > 0 ? this.users[this.users.length - 1].id + 1 : 1,
             ...createUserDto,
