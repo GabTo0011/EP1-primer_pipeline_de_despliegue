@@ -1,0 +1,56 @@
+name: Users Service CI
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Inicio de CI
+        run: |
+          echo "#########################################"
+          echo "CI INICIADO"
+          echo "Repositorio: ${{ github.repository }}"
+          echo "Evento: ${{ github.event_name }}"
+          echo "Activado por: ${{ github.actor }}"
+          echo "Ref: ${{ github.ref_name }}"
+          echo "Base PR: ${{ github.base_ref }}"
+          echo "Head PR: ${{ github.head_ref }}"
+          echo "#########################################"
+
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar pruebas
+        run: npm run test -- --runInBand
+
+      - name: Compilar proyecto
+        run: npm run build
+
+      - name: Fin de CI
+        run: |
+          echo "#########################################"
+          echo "CI FINALIZADO CON EXITO"
+          echo "Workflow ejecutado por: ${{ github.actor }}"
+          echo "Evento: ${{ github.event_name }}"
+          echo "Ref: ${{ github.ref_name }}"
+          echo "#########################################"
