@@ -139,3 +139,21 @@ ep1-primer_pipeline_de_despliegue/
 ├─ package.json
 ├─ README.md
 └─ CONTRIBUTING.md
+```
+
+## Conclusión
+Este proyecto nos permitió poner en practica los 
+conocimientos fundamentales de DevOps, aplicando el 
+uso de Git en un entorno colaborativo y reforzar la 
+importancia de la trazabilidad en nuestro código. El 
+implementar GitFlow nos facilitó la organización del 
+trabajo en equipo, asegurando un flujo ordenado entre 
+ramas y commits. Además, la configuración de un 
+pipeline básico con GitHub Actions aportó una primera 
+experiencia práctica en la automatización de procesos 
+de integración continua, acercándonos a un escenario 
+real de CI. Como grupo, la actividad nos simuló un 
+flujo de trabajo profesional, fortaleciendo tanto 
+nuestra disciplina técnica como colaborativa efectiva 
+dentro del repositorio, a pesar de ser nuestro primer 
+trabajo juntos.
