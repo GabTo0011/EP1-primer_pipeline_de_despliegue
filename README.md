@@ -1,34 +1,44 @@
+# EP1 - Primer pipeline de despliegue
+### User Service con NestJS
+---
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  Microservicio backend desarrollado con 
+  NestJS-TypeScript para la gestión básica de 
+  usuarios sin persistencia en base de datos.
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<p align="center">
+  Este proyecto implementa prácticas DevOps como 
+  control de versiones con GitFlow, trabajo 
+  colaborativo mediante Pull Requests y 
+  automatización con GitHub Actions.
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Descripción del proyecto
+
+El sistema permite realizar operaciones CRUD sobre usuarios, usando el almacenamiento en memoria.
+
+### Funcionalidades base
+- Listar usuarios
+- Obtener usuario por ID
+- Crear usuario
+- Actualizar usuario
+- Eliminar usuario
 
 ## Project setup
 
 ```bash
 $ npm install
+```
+
+## Configurar `.env`
+
+Crear un archivo `.env` en la raíz del proyecto con el siguiente contenido:
+
+```.env
+PORT=3080
 ```
 
 ## Compile and run the project
@@ -57,42 +67,93 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Deployment
+## Modelo de ramificación seleccionado: GitFlow
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Se utiliza **GitFlow** como estrategia de trabajo.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Estructura de ramas
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+- `main`: para versión estable
+- `develop`: integración de desarrollo
+- `feature/*`: agregar nuevas funcionalidades en [ `develop` ]
+- `hotfix/*`: correcciones urgentes en [ `main` ]
+- `bugfix/*`: para corregir errores en [ `develop` ]
+
+Se eligió GitFlow porque:
+
+Principalmente es la que mejor se ajusta a la 
+estructura solicitada en la actividad, por otro lado 
+nos permite organizar el desarrollo en etapas claras.
+Ademas mejora la trazabilidad mediante los Pull 
+Requests; con el plus de la estructura en ramas y 
+commits, finalmente facilita el mantenimiento del 
+proyecto a largo plazo y el trabajo colaborativo entre 
+multiples desarrolladores
+
+## Flujo de trabajo colaborativo
+
+1. Se trabaja sobre la rama `develop`
+2. Cada funcionalidad se desarrolla en una rama `feature/*`
+3. Cada corrección urgente se desarrolla en `hotfix/*`
+4. Todos los cambios se integran mediante Pull Requests
+5. Cada PR es revisado por otro integrante
+6. No se permite hacer push directo a `main`
+
+## Tecnologías utilizadas
+
+- Node.js
+- NestJS
+- TypeScript
+- Git
+- GitHub
+- GitHub Actions
+
+## Estructura del repositorio
+
+```text
+ep1-primer_pipeline_de_despliegue/
+├─ .github/
+│  └─ workflows/
+│     └─ ci.yml
+├─ src/
+│  ├─ main.ts
+│  ├─ app.module.ts
+│  ├─ app.service.ts
+│  ├─ app.controller.ts
+│  ├─ app.controller.spec.ts
+│  ├─ utils/
+│  │  └─ validations.ts
+│  └─ users/
+│     ├─ users.module.ts
+│     ├─ users.service.ts
+│     ├─ users.controller.ts
+│     ├─ users.service.spec.ts
+│     ├─ users.controller.spec.ts
+│     └─ dto/
+│        ├─ create-user.dto.ts
+│        └─ update-user.dto.ts
+├─ test/
+│  ├─ app.e2e-spec.ts
+│  └─ jest-e2e.json
+├─ .gitignore
+├─ package.json
+├─ README.md
+└─ CONTRIBUTING.md
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Conclusión
+Este proyecto nos permitió poner en practica los 
+conocimientos fundamentales de DevOps, aplicando el 
+uso de Git en un entorno colaborativo y reforzar la 
+importancia de la trazabilidad en nuestro código. El 
+implementar GitFlow nos facilitó la organización del 
+trabajo en equipo, asegurando un flujo ordenado entre 
+ramas y commits. Además, la configuración de un 
+pipeline básico con GitHub Actions aportó una primera 
+experiencia práctica en la automatización de procesos 
+de integración continua, acercándonos a un escenario 
+real de CI. Como grupo, la actividad nos simuló un 
+flujo de trabajo profesional, fortaleciendo tanto 
+nuestra disciplina técnica como colaborativa efectiva 
+dentro del repositorio, a pesar de ser nuestro primer 
+trabajo juntos.
