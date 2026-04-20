@@ -4,20 +4,30 @@
 <p align="center">
   Microservicio backend desarrollado con 
   NestJS-TypeScript para la gestión básica de 
-  usuarios sin persistencia en base de datos.  
+  usuarios sin persistencia en base de datos.
+</p>
 
+<p align="center">
   Este proyecto implementa prácticas DevOps como 
   control de versiones con GitFlow, trabajo 
   colaborativo mediante Pull Requests y 
   automatización con GitHub Actions.
 </p>
+
 ---
 
 ![CI](https://github.com/USUARIO/REPO/actions/workflows/ci.yml/badge.svg)
 
 ## Descripción del proyecto
 
-El sistema permite realizar operaciones CRUD sobre usuarios,
+El sistema permite realizar operaciones CRUD sobre usuarios, usando el almacenamiento en memoria.
+
+### Funcionalidades base
+- Listar usuarios
+- Obtener usuario por ID
+- Crear usuario
+- Actualizar usuario
+- Eliminar usuario
 
 ## Project setup
 
@@ -51,42 +61,36 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Deployment
+## Modelo de ramificación seleccionado: GitFlow
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Se utiliza **GitFlow** como estrategia de trabajo.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Estructura de ramas
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+- `main`: para versión estable
+- `develop`: integración de desarrollo
+- `feature/*`: agregar nuevas funcionalidades
+- `hotfix/*`: correcciones urgentes en [ main ]
+- `bugfix/*`: para corregir errores en [ develop ]
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Se eligió GitFlow porque:
 
-## Resources
+Principalmente es la que mejor se ajusta a la 
+estructura solicitada en la actividad, por otro lado 
+nos permite organizar el desarrollo en etapas claras.
+Ademas mejora la trazabilidad mediante los Pull 
+Requests; con el plus de la estructura en ramas y 
+commits, finalmente facilita el mantenimiento del 
+proyecto a largo plazo y el trabajo colaborativo entre 
+multiples desarrolladores
 
-Check out a few resources that may come in handy when working with NestJS:
+---
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## Tecnologías utilizadas
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- Node.js
+- NestJS
+- TypeScript
+- Git
+- GitHub
+- GitHub Actions

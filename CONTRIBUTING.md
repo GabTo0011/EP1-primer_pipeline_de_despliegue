@@ -1,7 +1,4 @@
 ---
-
-# 📄 CONTRIBUTING.md (FINAL)
-
 ```md  
 # Guía de contribución
 
